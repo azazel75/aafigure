@@ -1004,7 +1004,7 @@ def render(input, output=None, options=None):
         import io
         options['file_like'] = io.StringIO()
     elif isinstance(output, str):
-        options['file_like'] = file(output, 'wb')
+        options['file_like'] = open(output, 'wb')
         close_output = True
     else:
         options['file_like'] = output
@@ -1174,7 +1174,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             options.format = os.path.splitext(options.output)[1][1:]
 
     if args:
-        _input = file(args[0])
+        _input = open(args[0])
     else:
         _input = sys.stdin
     input = codecs.getreader(options.encoding)(_input)
@@ -1182,7 +1182,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     if options.output is None:
         output = sys.stdout
     else:
-        output = file(options.output, 'wb')
+        output = open(options.output, 'wb')
 
     # explicit copying of parameters to the options dictionary
     options_dict = {}
